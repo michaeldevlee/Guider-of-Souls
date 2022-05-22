@@ -28,7 +28,6 @@ camera_speed_multiplier = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 905, 902 )
-rotation = 3.14159
 current = true
 limit_left = 0
 limit_top = -2432
@@ -45,7 +44,6 @@ position = Vector2( 898, 406 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 905, 902 )
-rotation = 3.14159
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
