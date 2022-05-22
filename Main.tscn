@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Level 1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Debug.gd" type="Script" id=2]
 [ext_resource path="res://Tile Map/Terrain Decoration/Torch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Abilities/Retrieval Orb/Retrieval Orb.tscn" type="PackedScene" id=5]
+[ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2018, 20.5 )
@@ -74,3 +75,6 @@ shape = SubResource( 2 )
 [node name="Bottom" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 1999, 1165 )
 shape = SubResource( 3 )
+
+[node name="NPC" parent="." instance=ExtResource( 6 )]
+position = Vector2( 887, 580 )

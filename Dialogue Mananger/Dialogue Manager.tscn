@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Font/MusticaPro-SemiBold.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Dialogue Mananger/Dialogue Manager.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[node name="Dialogue Manager" type="Node2D"]
+script = ExtResource( 3 )
+bubble_text_path = NodePath("CanvasLayer/MarginContainer/Placeholder Text Bubble/MarginContainer/Bubble Text")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 480.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Placeholder Text Bubble" type="ColorRect" parent="CanvasLayer/MarginContainer"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 1870.0
+margin_bottom = 550.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/Placeholder Text Bubble"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bubble Text" type="Label" parent="CanvasLayer/MarginContainer/Placeholder Text Bubble/MarginContainer"]
+margin_left = 50.0
+margin_top = 224.0
+margin_right = 1770.0
+margin_bottom = 276.0
+grow_vertical = 0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "asdfasdfasdfasfffffffffffffffffffffffffffffff"
+autowrap = true
+
+[node name="Tween" type="Tween" parent="."]
