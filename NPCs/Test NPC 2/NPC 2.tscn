@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://NPCs/NPC.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Event.gd" type="Script" id=2]
+
+[sub_resource type="StreamTexture" id=1]
+resource_local_to_scene = true
+flags = 4
+load_path = "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+
+[node name="NPC 2" instance=ExtResource( 1 )]
+event_path = NodePath("Event")
+
+[node name="Sprite" parent="." index="0"]
+texture = SubResource( 1 )
+
+[node name="Event" type="Node2D" parent="." index="3"]
+script = ExtResource( 2 )

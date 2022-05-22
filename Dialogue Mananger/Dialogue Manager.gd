@@ -11,10 +11,11 @@ var dialogue_resource
 var index
 var dialogues
 var next_actions
+var current_NPC
 
 var currently_in_dialogue : bool = false
 
-signal dialogue_started (dialogue_object)
+signal dialogue_started (NPC)
 
 func _ready():
 	if bubble_text_path:
@@ -24,13 +25,15 @@ func _ready():
 	
 	
 		
-func handle_dialogue(dialogue_object):
+func handle_dialogue(NPC):
+	
+	current_NPC = NPC;
 	
 	if dialogue_resource == null:
-		dialogue_resource = dialogue_object
+		dialogue_resource = NPC.dialogue
 	
 	if dialogues == null and next_actions == null:
-		initiate_text(dialogue_object)
+		initiate_text(dialogue_resource.dialogue_array)
 	
 	if currently_in_dialogue and next_actions:
 		start_next_event()
@@ -39,10 +42,10 @@ func handle_dialogue(dialogue_object):
 		initiate_text_bubble()
 		
 
-func initiate_text(dialogue_object):
+func initiate_text(NPC):
 	if dialogue_resource and dialogue_resource is Dialogue:
-		dialogues = dialogue_object.dialogue_array
-		next_actions = dialogue_object.next_action
+		dialogues = dialogue_resource.dialogue_array
+		next_actions = dialogue_resource.next_action
 		index = 0
 
 func initiate_text_bubble():
@@ -61,6 +64,11 @@ func start_next_event():
 			currently_in_dialogue = false
 			EventBus.emit_signal("update_player_move_status", true)
 			close_text()
+		"EVENT":
+			EventBus.emit_signal("initiate_event", current_NPC)
+			close_text()
+
+
 
 func update_text():
 	bubble_text.set_text(dialogues[index])
@@ -70,6 +78,9 @@ func close_text():
 	bubble.set_visible(false)
 	dialogues = null
 	next_actions = null
+	current_NPC = null
+	dialogue_resource = null
+	currently_in_dialogue = false
 	index = 0
 
 func reveal_text_animation():
