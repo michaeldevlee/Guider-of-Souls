@@ -28,6 +28,7 @@ config/icon="res://icon.png"
 
 DialogueManager="*res://Dialogue Mananger/Dialogue Manager.tscn"
 EventBus="*res://Event Bus/Event Bus.gd"
+LevelManager="*res://Levels/Level Manager.tscn"
 
 [display]
 

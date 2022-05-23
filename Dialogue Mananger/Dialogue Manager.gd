@@ -5,7 +5,9 @@ onready var tween = get_node("Tween")
 
 export var bubble_text_path: NodePath
 
+
 var bubble_text
+var seconds
 
 var dialogue_resource
 var index
@@ -56,19 +58,25 @@ func initiate_text_bubble():
 	reveal_text_animation()
 
 func start_next_event():
+	
+	if tween.is_active():
+		tween.playback_speed = 4
+	
 	match next_actions[index]:
 		"NEXT":
-			index += 1;
-			update_text()
+			if !tween.is_active():
+				index += 1;
+				update_text()
+				tween.playback_speed = 1
 		"END":
-			currently_in_dialogue = false
-			EventBus.emit_signal("update_player_move_status", true)
-			close_text()
+			if !tween.is_active():
+				currently_in_dialogue = false
+				EventBus.emit_signal("update_player_move_status", true)
+				close_text()
 		"EVENT":
-			EventBus.emit_signal("initiate_event", current_NPC)
-			close_text()
-
-
+			if !tween.is_active():
+				EventBus.emit_signal("initiate_event", current_NPC)
+				close_text()
 
 func update_text():
 	bubble_text.set_text(dialogues[index])
@@ -84,7 +92,8 @@ func close_text():
 	index = 0
 
 func reveal_text_animation():
-	tween.interpolate_property(bubble_text, "percent_visible", 0, 1, 0.1,Tween.TRANS_LINEAR,Tween.EASE_IN)
+	seconds = 0.05 * bubble_text.get_total_character_count()
+	tween.interpolate_property(bubble_text, "percent_visible", 0, 1, seconds,Tween.TRANS_LINEAR,Tween.EASE_IN)
 	tween.start()
 
 

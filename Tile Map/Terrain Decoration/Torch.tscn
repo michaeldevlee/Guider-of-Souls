@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Tile Map/Torch.png" type="Texture" id=1]
+[ext_resource path="res://Light/light image.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -43,6 +44,9 @@ orbit_velocity_random = 0.0
 scale = 2.0
 color_ramp = SubResource( 6 )
 
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 24, 46.5 )
+
 [node name="Torch" type="Node2D"]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -55,3 +59,14 @@ playing = true
 position = Vector2( -2, -37 )
 lifetime = 2.0
 process_material = SubResource( 7 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 1.5, -27.5 )
+scale = Vector2( 0.561523, 0.530273 )
+texture = ExtResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -2, -5.5 )
+shape = SubResource( 8 )
