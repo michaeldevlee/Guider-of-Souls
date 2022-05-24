@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player/Player Sprite Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Light/light image.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=10]
 resource_name = "Idle"
@@ -220,3 +221,12 @@ process_material = SubResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 9 )
+
+[node name="Abilities" type="Node2D" parent="."]
+
+[node name="Light" type="Node2D" parent="Abilities"]
+visible = false
+
+[node name="Light2D" type="Light2D" parent="Abilities/Light"]
+scale = Vector2( 0.562, 0.53 )
+texture = ExtResource( 3 )
