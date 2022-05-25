@@ -6,7 +6,7 @@ export (int) var speed = 200
 var ability_nodes = {
 	Abilities.LIGHT: "Abilities/Light"
 }
-# TODO: show available abilities in UI
+
 var available_abilities = []
 var current_ability
 var currently_in_event : bool = false
@@ -60,7 +60,6 @@ func toggle_ability():
 	var ability = get_node(ability_nodes[current_ability])
 	ability.visible = not ability.visible
 	
-# TODO: show ui message "<abilityName> ability gained!"
 func add_ability(name):
 	if not name in available_abilities:
 		can_move = false
@@ -71,8 +70,8 @@ func add_ability(name):
 		available_abilities.append(name)
 		current_ability = name
 		DialogueManager.emit_signal("dialogue_started", Abilities.abilities_gained_text_list[name])
+		UiManager.emit_signal("update_skills", name)
 		
-
 func player_gained_ability_anim():
 	anim_player.play("Take Soul")
 	yield(anim_player, "animation_finished")

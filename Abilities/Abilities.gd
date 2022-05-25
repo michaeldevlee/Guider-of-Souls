@@ -5,3 +5,9 @@ const LIGHT = "LIGHT"
 const abilities_gained_text_list = {
 	LIGHT : preload("res://Abilities/Torch/Got Torch.tres")
 }
+
+const abilities_pics ={
+	LIGHT: "placeholder"
+}
+
+

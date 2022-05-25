@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "NPC",
 "language": "GDScript",
 "path": "res://NPCs/NPC.gd"
+}, {
+"base": "TextureRect",
+"class": "SkillIcon",
+"language": "GDScript",
+"path": "res://UI/Skill UI.gd"
 } ]
 _global_script_class_icons={
 "Dialogue": "",
-"NPC": ""
+"NPC": "",
+"SkillIcon": ""
 }
 
 [application]
@@ -36,11 +42,16 @@ Abilities="*res://Abilities/Abilities.gd"
 DialogueManager="*res://Dialogue Mananger/Dialogue Manager.tscn"
 EventBus="*res://Event Bus/Event Bus.gd"
 LevelManager="*res://Levels/Level Manager.tscn"
+UiManager="*res://UI/UI Manager.gd"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
+window/size/test_width=960
+window/size/test_height=540
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [input]
 
