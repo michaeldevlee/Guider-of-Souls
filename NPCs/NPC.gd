@@ -1,41 +1,36 @@
 extends Node2D
+class_name NPC
 
 export var dialogue : Resource
 export var event_path : NodePath
 export(String, "LIGHT") var ability = "LIGHT"
 
+onready var anim_player = get_node("AnimationPlayer")
+
 var event
-var can_interact : bool = false
+var soul_collected : bool = false
 
 func _ready():
 	initialize_signals()
 	if event_path :
 		event = get_node(event_path)
 
-func _on_Area2D_body_entered(body):
-	if body.name == "Player":
-		can_interact = true
+func play_death_anim():
+	anim_player.play("Death")
 
-
-func _on_Area2D_body_exited(body):
-	# TODO: this should be called when NPC is killed.
-	on_death();
-	if body.name == "Player":
-		can_interact = false
-
-func on_death():
-	EventBus.emit_signal("add_ability", ability)
+func on_death_anim_finished(anim_name : String):
+	if anim_name == "Death":
+		EventBus.emit_signal("add_ability", ability)
+		soul_collected = true
 
 func initiate_conversation():
-	DialogueManager.emit_signal("dialogue_started", self)
+	DialogueManager.emit_signal("dialogue_started", dialogue)
 	
-func start_event(NPC):
-	if NPC == self:
-		event.initiate();
-
-func _input(event):
-	if Input.is_action_just_pressed("interact") and can_interact:
-		initiate_conversation()
+func start_event(dialogue_object):
+	if dialogue_object == dialogue:
+		DialogueManager.player_ready_for_dialogue = false
+		event.initiate(self);
 
 func initialize_signals():
 	EventBus.connect("initiate_event", self, "start_event")
+	anim_player.connect("animation_finished", self, "on_death_anim_finished")

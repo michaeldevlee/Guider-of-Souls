@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Levels/Level 1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Debug.gd" type="Script" id=2]
 [ext_resource path="res://Tile Map/Terrain Decoration/Torch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://NPCs/Test NPC/Test NPC.tscn" type="PackedScene" id=7]
-[ext_resource path="res://NPCs/Test NPC/Test NPC Dialogue 2.tres" type="Resource" id=8]
+[ext_resource path="res://NPCs/Torday/Torday.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Environment" id=4]
 background_mode = 4
@@ -52,12 +51,6 @@ position = Vector2( 898, 406 )
 [node name="Torch2" parent="Level 1" instance=ExtResource( 3 )]
 position = Vector2( 905, 1036 )
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 905, 902 )
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../Camera2D")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 905, 902 )
 rotation = -3.14159
@@ -65,6 +58,15 @@ limit_left = 0
 limit_top = -2305
 limit_right = 3967
 limit_bottom = 1152
+
+[node name="Torday" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1007, 460 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 905, 902 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
@@ -83,7 +85,3 @@ shape = SubResource( 2 )
 [node name="Bottom" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 1999, 1165 )
 shape = SubResource( 3 )
-
-[node name="Test NPC" parent="." instance=ExtResource( 7 )]
-position = Vector2( 982, 421 )
-dialogue = ExtResource( 8 )

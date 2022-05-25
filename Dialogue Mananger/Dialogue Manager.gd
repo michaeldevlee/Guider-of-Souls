@@ -13,11 +13,11 @@ var dialogue_resource
 var index
 var dialogues
 var next_actions
-var current_NPC
+var player_ready_for_dialogue : bool = false
 
 var currently_in_dialogue : bool = false
 
-signal dialogue_started (NPC)
+signal dialogue_started (dialogue_object)
 
 func _ready():
 	if bubble_text_path:
@@ -25,34 +25,32 @@ func _ready():
 	
 	initialize_signals()
 	
-	
-		
-func handle_dialogue(NPC):
-	
-	current_NPC = NPC;
-	
-	if dialogue_resource == null:
-		dialogue_resource = NPC.dialogue
+func start_dialogue(dialogue_object):
+	if dialogue_resource == null and dialogue_object:
+		dialogue_resource = dialogue_object
 	
 	if dialogues == null and next_actions == null:
-		initiate_text(dialogue_resource.dialogue_array)
+		initiate_text(dialogue_resource.dialogue_array)\
+	
+	if !currently_in_dialogue and dialogues:
+		initiate_text_bubble()
+
+		
+func handle_dialogue():
 	
 	if currently_in_dialogue and next_actions:
 		start_next_event()
 	
-	if !currently_in_dialogue and dialogues:
-		initiate_text_bubble()
-		
 
-func initiate_text(NPC):
+func initiate_text(dialogue_object):
 	if dialogue_resource and dialogue_resource is Dialogue:
 		dialogues = dialogue_resource.dialogue_array
 		next_actions = dialogue_resource.next_action
 		index = 0
 
 func initiate_text_bubble():
-	bubble.set_visible(true)
 	bubble_text.set_text(dialogues[0])
+	bubble.set_visible(true)
 	currently_in_dialogue = true
 	EventBus.emit_signal("update_player_move_status", false)
 	reveal_text_animation()
@@ -75,7 +73,7 @@ func start_next_event():
 				close_text()
 		"EVENT":
 			if !tween.is_active():
-				EventBus.emit_signal("initiate_event", current_NPC)
+				EventBus.emit_signal("initiate_event", dialogue_resource)
 				close_text()
 
 func update_text():
@@ -86,7 +84,6 @@ func close_text():
 	bubble.set_visible(false)
 	dialogues = null
 	next_actions = null
-	current_NPC = null
 	dialogue_resource = null
 	currently_in_dialogue = false
 	index = 0
@@ -95,7 +92,14 @@ func reveal_text_animation():
 	seconds = 0.05 * bubble_text.get_total_character_count()
 	tween.interpolate_property(bubble_text, "percent_visible", 0, 1, seconds,Tween.TRANS_LINEAR,Tween.EASE_IN)
 	tween.start()
-
+	print("updating text")
 
 func initialize_signals():
-	DialogueManager.connect("dialogue_started", self, "handle_dialogue")
+	DialogueManager.connect("dialogue_started", self, "start_dialogue")
+
+func _input(event):
+	if Input.is_action_just_pressed("interact"):
+		if currently_in_dialogue:
+			handle_dialogue()
+		elif !currently_in_dialogue and player_ready_for_dialogue:
+			start_dialogue(dialogue_resource)

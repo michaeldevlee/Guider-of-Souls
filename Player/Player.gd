@@ -9,7 +9,11 @@ var ability_nodes = {
 # TODO: show available abilities in UI
 var available_abilities = []
 var current_ability
+var currently_in_event : bool = false
+
 var can_move : bool = true
+var can_interact : bool = false
+var interaction_object = null
 
 var velocity = Vector2()
 
@@ -18,7 +22,7 @@ func _ready():
 
 func get_input():
 	
-	if velocity == Vector2():
+	if velocity == Vector2() and !currently_in_event:
 		anim_player.play("Idle")
 	
 	if !can_move:
@@ -59,9 +63,36 @@ func toggle_ability():
 # TODO: show ui message "<abilityName> ability gained!"
 func add_ability(name):
 	if not name in available_abilities:
+		can_move = false
+		currently_in_event = true
+		yield(player_gained_ability_anim(),"completed")
+		currently_in_event = false
+		DialogueManager.player_ready_for_dialogue = true
 		available_abilities.append(name)
 		current_ability = name
+		DialogueManager.emit_signal("dialogue_started", Abilities.abilities_gained_text_list[name])
+		
+
+func player_gained_ability_anim():
+	anim_player.play("Take Soul")
+	yield(anim_player, "animation_finished")
 
 func _physics_process(delta):
 	get_input()
 	velocity = move_and_slide(velocity)
+
+func _on_Interact_Area_area_entered(area):
+	if area.is_in_group("NPC"):
+		interaction_object = area.owner
+		
+		if interaction_object.soul_collected == false:
+			DialogueManager.player_ready_for_dialogue = true
+
+func _on_Interact_Area_area_exited(area):
+	if area.is_in_group("NPC"):
+		interaction_object = null
+		DialogueManager.player_ready_for_dialogue = false
+
+func _input(event):
+	if Input.is_action_just_pressed("interact") and DialogueManager.player_ready_for_dialogue:
+		interaction_object.initiate_conversation()
