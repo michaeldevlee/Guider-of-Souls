@@ -25,6 +25,7 @@ func update_current_skill(skill_icon : SkillIcon):
 		for skill in skill_icons:
 			if skill == active_icon:
 				skill.update_active_status(true)
+				UiManager.emit_signal("update_current_ability", skill.skill_name)
 			else:
 				skill.update_active_status(false)
 
@@ -33,7 +34,6 @@ func update_new_skill(name):
 		if skill.unlocked == false:
 			skill.unlocked = true
 			skill.locked.set_visible(false)
-			skill.update_active_status(true)
 			skill.skill_name = name
 			print(skill.skill_name)
 			return

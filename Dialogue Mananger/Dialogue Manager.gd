@@ -30,7 +30,7 @@ func start_dialogue(dialogue_object):
 		dialogue_resource = dialogue_object
 	
 	if dialogues == null and next_actions == null:
-		initiate_text(dialogue_resource.dialogue_array)\
+		initiate_text(dialogue_resource.dialogue_array)
 	
 	if !currently_in_dialogue and dialogues:
 		initiate_text_bubble()

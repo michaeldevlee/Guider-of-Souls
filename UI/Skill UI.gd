@@ -7,7 +7,7 @@ onready var locked = get_node("Locked")
 
 var is_active : bool = false
 var unlocked : bool = false
-var skill_name 
+var skill_name
 
 signal updated_status (status)
 

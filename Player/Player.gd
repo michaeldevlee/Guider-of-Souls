@@ -49,6 +49,7 @@ func get_input():
 func initialize_signals():
 	EventBus.connect("update_player_move_status", self, "set_move_status")
 	EventBus.connect("add_ability", self, "add_ability")
+	UiManager.connect("update_current_ability", self, "update_current_ability")
 
 func set_move_status(status : bool):
 	can_move = status
@@ -66,12 +67,14 @@ func add_ability(name):
 		currently_in_event = true
 		yield(player_gained_ability_anim(),"completed")
 		currently_in_event = false
-		DialogueManager.player_ready_for_dialogue = true
 		available_abilities.append(name)
-		current_ability = name
 		DialogueManager.emit_signal("dialogue_started", Abilities.abilities_gained_text_list[name])
 		UiManager.emit_signal("update_skills", name)
-		
+		DialogueManager.player_ready_for_dialogue = true
+
+func update_current_ability(name):
+	current_ability = name
+
 func player_gained_ability_anim():
 	anim_player.play("Take Soul")
 	yield(anim_player, "animation_finished")

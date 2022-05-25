@@ -24,7 +24,8 @@ func on_death_anim_finished(anim_name : String):
 		soul_collected = true
 
 func initiate_conversation():
-	DialogueManager.emit_signal("dialogue_started", dialogue)
+	if !soul_collected:
+		DialogueManager.emit_signal("dialogue_started", dialogue)
 	
 func start_event(dialogue_object):
 	if dialogue_object == dialogue:
