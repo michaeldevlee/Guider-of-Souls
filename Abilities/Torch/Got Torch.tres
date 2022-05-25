@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource( 1 )
-dialogue_array = [ "You can now light up your surroundings by pressing E!", "wfw" ]
-next_action = [ "NEXT", "END" ]
+dialogue_array = [ "You can now light up your surroundings by pressing E!" ]
+next_action = [ "END" ]

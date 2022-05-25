@@ -49,6 +49,7 @@ func initiate_text(dialogue_object):
 		index = 0
 
 func initiate_text_bubble():
+	bubble_text.percent_visible = 0
 	bubble_text.set_text(dialogues[0])
 	bubble.set_visible(true)
 	currently_in_dialogue = true
@@ -82,6 +83,7 @@ func update_text():
 
 func close_text():
 	bubble.set_visible(false)
+	bubble_text.set_text("")
 	dialogues = null
 	next_actions = null
 	dialogue_resource = null
