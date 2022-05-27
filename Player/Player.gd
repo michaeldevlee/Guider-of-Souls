@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Player
 
 
 onready var anim_player = get_node("AnimationPlayer")
@@ -13,7 +14,9 @@ var currently_in_event : bool = false
 
 var can_move : bool = true
 var can_interact : bool = false
+var can_teleport : bool = false
 var interaction_object = null
+
 
 var velocity = Vector2()
 
@@ -89,12 +92,19 @@ func _on_Interact_Area_area_entered(area):
 		
 		if interaction_object.soul_collected == false:
 			DialogueManager.player_ready_for_dialogue = true
+	
+	if area.is_in_group("Portal"):
+		interaction_object = area.owner
+		can_teleport = true
 
 func _on_Interact_Area_area_exited(area):
-	if area.is_in_group("NPC"):
-		interaction_object = null
-		DialogueManager.player_ready_for_dialogue = false
+	DialogueManager.player_ready_for_dialogue = false
+	can_teleport = false
+	interaction_object = null
 
 func _input(event):
-	if Input.is_action_just_pressed("interact") and DialogueManager.player_ready_for_dialogue:
-		interaction_object.initiate_conversation()
+	if Input.is_action_just_pressed("interact") and interaction_object:
+		if DialogueManager.player_ready_for_dialogue:
+			interaction_object.initiate_conversation()
+		if can_teleport:
+			interaction_object.teleport(self)

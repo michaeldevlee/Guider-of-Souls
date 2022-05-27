@@ -1,11 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Levels/Level 1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Debug.gd" type="Script" id=2]
 [ext_resource path="res://Tile Map/Terrain Decoration/Torch.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Levels/Level 2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://NPCs/Torday/Torday.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Levels/Portal/Portal.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Main.gd" type="Script" id=9]
 
 [sub_resource type="Environment" id=4]
 background_mode = 4
@@ -21,12 +24,14 @@ extents = Vector2( 14.5, 1805.88 )
 extents = Vector2( 2001.75, 14.25 )
 
 [node name="Main" type="Node2D"]
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_horizontal_guides_": [ -2305.0, -2432.0 ],
 "_edit_vertical_guides_": [ 3967.0 ]
 }
 
 [node name="Environment" type="Node2D" parent="."]
+visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Environment"]
 color = Color( 0, 0, 0, 1 )
@@ -39,20 +44,42 @@ script = ExtResource( 2 )
 camera_speed_multiplier = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 905, 902 )
+position = Vector2( 1160, 432 )
 current = true
-limit_left = 0
-limit_top = -2432
-limit_right = 3967
-limit_bottom = 1152
 
-[node name="Level 1" parent="." instance=ExtResource( 1 )]
+[node name="Level System" type="Node2D" parent="."]
 
-[node name="Torch" parent="Level 1" instance=ExtResource( 3 )]
+[node name="Level 1" parent="Level System" instance=ExtResource( 1 )]
+
+[node name="Torch" parent="Level System/Level 1" instance=ExtResource( 3 )]
 position = Vector2( 898, 406 )
 
-[node name="Torch2" parent="Level 1" instance=ExtResource( 3 )]
+[node name="Torch2" parent="Level System/Level 1" instance=ExtResource( 3 )]
 position = Vector2( 905, 1036 )
+
+[node name="Portal 1" parent="Level System/Level 1" instance=ExtResource( 8 )]
+position = Vector2( 2112, 320 )
+z_index = 1
+next_level_location_path = NodePath("../../Level 2/Portal 2")
+
+[node name="Level 2" parent="Level System" instance=ExtResource( 6 )]
+position = Vector2( 3968, 0 )
+
+[node name="Portal 2" parent="Level System/Level 2" instance=ExtResource( 8 )]
+position = Vector2( 960, -3264 )
+z_index = 1
+
+[node name="Torch" parent="Level System/Level 2" instance=ExtResource( 3 )]
+position = Vector2( 832, -3424 )
+
+[node name="Torch2" parent="Level System/Level 2" instance=ExtResource( 3 )]
+position = Vector2( 1104, -3416 )
+
+[node name="Torch3" parent="Level System/Level 2" instance=ExtResource( 3 )]
+position = Vector2( 1088, -3144 )
+
+[node name="Torch4" parent="Level System/Level 2" instance=ExtResource( 3 )]
+position = Vector2( 816, -3136 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 905, 902 )
@@ -66,7 +93,8 @@ limit_bottom = 1152
 position = Vector2( 1007, 460 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 905, 902 )
+position = Vector2( 1160, 432 )
+speed = 400
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
