@@ -2,7 +2,7 @@ extends CanvasLayer
 
 onready var main_UI = get_node("Main UI Container")
 onready var anim_player = get_node("AnimationPlayer")
-onready var skills_container = get_node("Main UI Container/VBoxContainer/HBoxContainer")
+onready var skills_container = get_node("VBoxContainer/HBoxContainer")
 
 var skill_icons = []
 
@@ -38,6 +38,8 @@ func update_new_skill(name):
 			print(skill.skill_name)
 			return
 			
+func play_skill_hint():
+	anim_player.play("Skill Icon Hint")
 
 func _on_Hover_mouse_entered():
 	anim_player.play("Slide")

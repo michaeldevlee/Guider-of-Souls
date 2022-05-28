@@ -52,6 +52,7 @@ UiManager="*res://UI/UI Manager.gd"
 TransitionManager="*res://Transitions/Transition Manager.tscn"
 AudioManager="*res://Audio Manager/Audio Manager.tscn"
 Songs="*res://Audio Manager/Songs.gd"
+Sfx="*res://Audio Manager/SFX/SFX.gd"
 
 [display]
 

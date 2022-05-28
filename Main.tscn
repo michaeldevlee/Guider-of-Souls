@@ -31,7 +31,6 @@ __meta__ = {
 }
 
 [node name="Environment" type="Node2D" parent="."]
-visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Environment"]
 color = Color( 0, 0, 0, 1 )
@@ -44,7 +43,7 @@ script = ExtResource( 2 )
 camera_speed_multiplier = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 1160, 432 )
+position = Vector2( 912, 840 )
 current = true
 
 [node name="Level System" type="Node2D" parent="."]
@@ -93,7 +92,7 @@ limit_bottom = 1152
 position = Vector2( 1007, 460 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1160, 432 )
+position = Vector2( 912, 840 )
 speed = 400
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]

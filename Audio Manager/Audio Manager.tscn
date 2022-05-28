@@ -6,9 +6,14 @@
 script = ExtResource( 1 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
 
 [node name="SFX_Channel_1" type="AudioStreamPlayer" parent="."]
 
 [node name="SFX_Channel_2" type="AudioStreamPlayer" parent="."]
+
+[node name="En_Channel_1" type="AudioStreamPlayer" parent="."]
+
+[node name="En_Channel_2" type="AudioStreamPlayer" parent="."]
 
 [node name="Tween" type="Tween" parent="."]

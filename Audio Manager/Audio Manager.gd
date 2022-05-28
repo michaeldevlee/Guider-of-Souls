@@ -2,11 +2,34 @@ extends Node2D
 
 onready var music_player = get_node("Music")
 onready var tween = get_node("Tween")
+onready var SFX_player_1 = get_node("SFX_Channel_1")
+onready var SFX_player_2 = get_node("SFX_Channel_2")
+onready var environ_player_1 = get_node("En_Channel_1")
+onready var environ_player_2 = get_node("En_Channel_2")
+
+var SFX_players 
+
+func _ready():
+	SFX_players = [
+	SFX_player_1,
+	SFX_player_2
+	]
 
 func play_audio(audio : AudioStream):
 	if audio:
 		music_player.set_stream(audio)
 		music_player.play()
+
+func play_SFX(audio : AudioStream , speed):
+	for player in SFX_players:
+		if !player.stream:
+			player.pitch_scale = speed
+			player.set_stream(audio)
+			player.play()
+			yield(player,"finished")
+			player.set_stream(null)
+			player.pitch_scale = 1
+			break
 
 func fade_out_audio ():
 	if music_player.stream:

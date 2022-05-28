@@ -68,6 +68,7 @@ func add_ability(name):
 	if not name in available_abilities:
 		can_move = false
 		currently_in_event = true
+		AudioManager.play_SFX(Sfx.get_ability, 1.5)
 		yield(player_gained_ability_anim(),"completed")
 		currently_in_event = false
 		available_abilities.append(name)
