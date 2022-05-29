@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Push Icon.png-4b87dbb58f17e94e83a13da7ef1df309.stex"
+path="res://.import/Chain.png-cc73cee8f28ac4ce0b959e713aacdfbb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Abilities/Push Icon.png"
-dest_files=[ "res://.import/Push Icon.png-4b87dbb58f17e94e83a13da7ef1df309.stex" ]
+source_file="res://Abilities/Grab/Chain.png"
+dest_files=[ "res://.import/Chain.png-cc73cee8f28ac4ce0b959e713aacdfbb.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false

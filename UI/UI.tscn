@@ -4,7 +4,7 @@
 [ext_resource path="res://UI/UI.gd" type="Script" id=2]
 [ext_resource path="res://UI/Skill UI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Font/MusticaPro-SemiBold.otf" type="DynamicFontData" id=4]
-[ext_resource path="res://Abilities/Push Icon.png" type="Texture" id=5]
+[ext_resource path="res://Abilities/Grab/Push Icon.png" type="Texture" id=5]
 [ext_resource path="res://Abilities/Torch/Torch Icon.png" type="Texture" id=6]
 [ext_resource path="res://Abilities/Retrieval Orb/Retriever Orb Icon.png" type="Texture" id=7]
 
@@ -246,36 +246,34 @@ text = "E - Use Skill"
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 196.0
-margin_bottom = 196.0
+margin_right = 3840.0
+margin_bottom = 2356.0
 mouse_filter = 2
 alignment = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 952.0
-margin_right = 1920.0
-margin_bottom = 1080.0
+margin_top = 3112.0
+margin_right = 5760.0
+margin_bottom = 3240.0
 mouse_filter = 2
 custom_constants/separation = 30
 alignment = 1
 
 [node name="Skill UI" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 738.0
-margin_right = 866.0
+margin_left = 2658.0
+margin_right = 2786.0
 margin_bottom = 128.0
 texture = ExtResource( 6 )
 
 [node name="Skill UI2" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 896.0
-margin_right = 1024.0
+margin_left = 2816.0
+margin_right = 2944.0
 margin_bottom = 128.0
 texture = ExtResource( 7 )
 
 [node name="Skill UI3" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 1054.0
-margin_right = 1182.0
+margin_left = 2974.0
+margin_right = 3102.0
 margin_bottom = 128.0
 texture = ExtResource( 5 )
 

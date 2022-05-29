@@ -3,7 +3,7 @@ class_name NPC
 
 export var dialogue : Resource
 export var event_path : NodePath
-export(String, "LIGHT") var ability = "LIGHT"
+export(String, "LIGHT", "GRAB") var ability = "GRAB"
 
 onready var anim_player = get_node("AnimationPlayer")
 

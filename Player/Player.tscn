@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player/Player Sprite Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Light/light image.png" type="Texture" id=3]
+[ext_resource path="res://Abilities/Grab/arrow.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=10]
 resource_name = "Idle"
@@ -225,6 +226,10 @@ process_material = SubResource( 8 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 9 )
 
+[node name="GrabRayCast2D" type="RayCast2D" parent="."]
+cast_to = Vector2( 0, 5000 )
+collision_mask = 2
+
 [node name="Abilities" type="Node2D" parent="."]
 
 [node name="Light" type="Node2D" parent="Abilities"]
@@ -233,6 +238,35 @@ visible = false
 [node name="Light2D" type="Light2D" parent="Abilities/Light"]
 scale = Vector2( 0.562, 0.53 )
 texture = ExtResource( 3 )
+
+[node name="Grab" type="Node2D" parent="Abilities"]
+
+[node name="Up" type="Sprite" parent="Abilities/Grab"]
+visible = false
+position = Vector2( -2, -123 )
+scale = Vector2( 5.53571, 5.53571 )
+texture = ExtResource( 4 )
+
+[node name="Right" type="Sprite" parent="Abilities/Grab"]
+visible = false
+position = Vector2( 116, -3 )
+rotation = 1.5708
+scale = Vector2( 6.0377, 6.0377 )
+texture = ExtResource( 4 )
+
+[node name="Left" type="Sprite" parent="Abilities/Grab"]
+visible = false
+position = Vector2( -112, -2 )
+rotation = -1.5708
+scale = Vector2( 5.15226, 5.15226 )
+texture = ExtResource( 4 )
+
+[node name="Down" type="Sprite" parent="Abilities/Grab"]
+visible = false
+position = Vector2( 0.999998, 100 )
+rotation = -3.14159
+scale = Vector2( 5.85207, 5.85207 )
+texture = ExtResource( 4 )
 
 [node name="Interact Area" type="Area2D" parent="."]
 

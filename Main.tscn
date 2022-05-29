@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Levels/Level 1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Debug.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://NPCs/Torday/Torday.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Levels/Portal/Portal.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Main.gd" type="Script" id=9]
+[ext_resource path="res://Movable Objects/Box.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Environment" id=4]
 background_mode = 4
@@ -25,12 +26,9 @@ extents = Vector2( 2001.75, 14.25 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 9 )
-__meta__ = {
-"_edit_horizontal_guides_": [ -2305.0, -2432.0 ],
-"_edit_vertical_guides_": [ 3967.0 ]
-}
 
 [node name="Environment" type="Node2D" parent="."]
+visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Environment"]
 color = Color( 0, 0, 0, 1 )
@@ -119,8 +117,8 @@ shape = SubResource( 3 )
 [node name="UI" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="UI" parent="UI" instance=ExtResource( 5 )]
+
+[node name="Box" parent="." instance=ExtResource( 10 )]
+position = Vector2( 908, 1036 )
