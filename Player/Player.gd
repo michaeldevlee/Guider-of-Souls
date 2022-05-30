@@ -89,7 +89,7 @@ func set_move_status(status : bool):
 	velocity = Vector2()
 	
 func use_light():
-	var ability = $"Abilitles/Light"
+	var ability = $Abilities/Light
 	ability.visible = not ability.visible
 	
 func use_push():

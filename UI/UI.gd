@@ -8,6 +8,7 @@ var skill_icons = []
 
 func _ready():
 	register_signals()
+	anim_player.play("RESET")
 	
 	for skill in skills_container.get_children():
 		skill.connect("updated_status", self, "update_current_skill")
