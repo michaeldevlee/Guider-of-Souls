@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-onready var main_UI = get_node("Main UI Container")
 onready var anim_player = get_node("AnimationPlayer")
 onready var skills_container = get_node("VBoxContainer/HBoxContainer")
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dungeon-air-6983.mp3-00e83103bb935ee7b42fe6673cb3b532.mp3str"
+
+[deps]
+
+source_file="res://Audio Manager/Music/dungeon-air-6983.mp3"
+dest_files=[ "res://.import/dungeon-air-6983.mp3-00e83103bb935ee7b42fe6673cb3b532.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

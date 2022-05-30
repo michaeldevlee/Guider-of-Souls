@@ -6,4 +6,5 @@ func on_collide(player_position):
 	velocity = move_and_slide(velocity)
 	
 func push(velocity):
-	 move_and_slide(velocity)
+	print("pushing")
+	velocity = move_and_slide(velocity)

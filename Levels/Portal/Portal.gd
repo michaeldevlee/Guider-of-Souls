@@ -21,3 +21,8 @@ func teleport(player : Player):
 			player.global_position = next_level_location
 			EventBus.emit_signal("update_player_move_status", true)
 			TransitionManager.play_fade_in(0.8)
+	else:
+		TransitionManager.play_fade_out(0.8)
+		yield(TransitionManager.anim_player, "animation_finished")
+		get_tree().change_scene("res://Ending/End Scene.tscn")
+

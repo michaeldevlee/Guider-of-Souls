@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource( 1 )
-dialogue_array = [ "type dialogue", "type dialogue", "type dialogue" ]
-next_action = [ "NEXT", "NEXT", "EVENT" ]
+dialogue_array = [ "Conversation commencing...", "... .. ... ...", "Playing entry 102 : I tire of this world and I am patiently waiting for assistance.", "If you are here to save me, detach my arm and use it to pull things in." ]
+next_action = [ "NEXT", "NEXT", "NEXT", "EVENT" ]

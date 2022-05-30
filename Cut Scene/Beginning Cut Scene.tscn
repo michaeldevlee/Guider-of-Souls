@@ -1,0 +1,314 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Font/MusticaPro-SemiBold.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Player/Player Sprite Sheet.png" type="Texture" id=2]
+[ext_resource path="res://Cut Scene/Player Animator.gd" type="Script" id=3]
+[ext_resource path="res://Cut Scene/First Scene.png" type="Texture" id=4]
+[ext_resource path="res://Tile Map/Terrain Decoration/Torch.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Cut Scene/Beginning Cut Scene.gd" type="Script" id=6]
+[ext_resource path="res://Audio Manager/Music/gentle-rainfall-16960.mp3" type="AudioStream" id=7]
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 951, 1151 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Show Text"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 5, 5.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 8.5, 10, 19, 19.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 10.5, 14, 15.5, 18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 951, 1151 ), Vector2( 951, 752 ), Vector2( 951, 752 ), Vector2( 951, 364 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Player Animator")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 14, 15.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_walkup"
+}, {
+"args": [  ],
+"method": "play_idle"
+}, {
+"args": [  ],
+"method": "play_walkup"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Player:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 17.3, 18 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 19.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "start_game"
+} ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("Rain")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 3.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Idle"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 15, 16, 15 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Walk Up"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 2
+emission_box_extents = Vector3( 900, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2000.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 4.0
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="Environment" id=8]
+background_mode = 4
+
+[node name="Beginning Cut Scene" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Cut Scene Animator" type="AnimationPlayer" parent="."]
+autoplay = "Show Text"
+anims/RESET = SubResource( 3 )
+"anims/Show Text" = SubResource( 2 )
+
+[node name="Player Animator" type="AnimationPlayer" parent="."]
+autoplay = "Walk Up"
+anims/Idle = SubResource( 6 )
+anims/RESET = SubResource( 4 )
+"anims/Walk Up" = SubResource( 5 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+show_behind_parent = true
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 993, 2 )
+amount = 200
+lifetime = 10.0
+randomness = 1.0
+process_material = SubResource( 7 )
+
+[node name="Torch" parent="." instance=ExtResource( 5 )]
+position = Vector2( 337, 874 )
+
+[node name="Torch2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 452, 555 )
+
+[node name="Torch3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1632, 851 )
+
+[node name="Torch4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1492, 572 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0.0156863, 0.152941, 0.333333, 0.337255 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 441.0
+margin_top = 457.0
+margin_right = 1518.0
+margin_bottom = 658.0
+custom_fonts/font = SubResource( 1 )
+text = "For the souls that are trapped amongst the living, I shall set you free and bring a new beginning"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" type="Sprite" parent="."]
+position = Vector2( 951, 1151 )
+texture = ExtResource( 2 )
+hframes = 5
+vframes = 4
+frame = 5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 8 )
+
+[node name="Rain" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -10.0

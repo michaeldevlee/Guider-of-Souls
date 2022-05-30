@@ -30,7 +30,7 @@ func get_input():
 	if !can_move:
 		return
 	
-	if Input.is_action_pressed("switch_ability"):
+	if Input.is_action_just_pressed("switch_ability"):
 		switch_ability()
 	
 	if Input.is_action_pressed("use_ability"):
@@ -122,6 +122,7 @@ func use_grab():
 	ability.cast_to = get_raycast_direction()
 	if ability.is_colliding():
 		ability.get_collider().on_collide(position)
+		print(ability.get_collider())
 
 func toggle_ability():
 	if not current_ability:
@@ -130,6 +131,8 @@ func toggle_ability():
 		use_light()
 	elif(current_ability == Abilities.GRAB):
 		use_grab()
+	elif(current_ability == Abilities.PUSH):
+		use_push()
 
 	
 func add_ability(name):
@@ -142,7 +145,6 @@ func add_ability(name):
 		available_abilities.append(name)
 		DialogueManager.emit_signal("dialogue_started", Abilities.abilities_gained_text_list[name])
 		UiManager.emit_signal("update_skills", name)
-		DialogueManager.player_ready_for_dialogue = true
 		update_current_ability(name)
 
 func update_current_ability(name):

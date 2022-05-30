@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource( 1 )
-dialogue_array = [ "THIS IS SUCH A GREAT CONVERSATION HAHA!", "WOW" ]
-next_action = [ "NEXT", "EVENT" ]
+dialogue_array = [ "I know why you're here. ", "It's a shame! I was getting used to this strange state of living.", "You could use a light! I bestow the chance to see in the darkest of darkness!" ]
+next_action = [ "NEXT", "NEXT", "EVENT" ]
