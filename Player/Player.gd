@@ -12,11 +12,11 @@ var currently_in_event : bool = false
 var can_move : bool = true
 var can_interact : bool = false
 var can_teleport : bool = false
+var can_push : bool = false
 var interaction_object = null
 var direction
 var prev_grab_sprite
 var curr_grab_sprite
-
 
 var velocity = Vector2()
 
@@ -29,6 +29,9 @@ func get_input():
 	
 	if !can_move:
 		return
+	
+	if Input.is_action_pressed("switch_ability"):
+		switch_ability()
 	
 	if Input.is_action_pressed("use_ability"):
 		toggle_ability()
@@ -58,6 +61,23 @@ func get_input():
 		anim_player.play("Walk Up")
 	
 	velocity = velocity.normalized() * speed
+	if can_push && get_slide_count() > 0:
+		check_box_collision(velocity)
+
+func switch_ability():
+	if available_abilities.size() < 1:
+		return
+	if available_abilities[-1] == current_ability:
+		current_ability = available_abilities[0]
+	else:
+		var prev = available_abilities.find(current_ability)
+		current_ability = available_abilities[prev + 1];
+
+
+func check_box_collision(velocity):
+	var box = get_slide_collision(0).collider as Box
+	if box:
+		box.push(velocity * .5);
 
 func initialize_signals():
 	EventBus.connect("update_player_move_status", self, "set_move_status")
@@ -71,6 +91,12 @@ func set_move_status(status : bool):
 func use_light():
 	var ability = $"Abilitles/Light"
 	ability.visible = not ability.visible
+	
+func use_push():
+	if current_ability == Abilities.PUSH:
+		can_push = true
+	else:
+		can_push = false
 	
 func get_raycast_direction():
 	if direction == "down":

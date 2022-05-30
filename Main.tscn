@@ -121,7 +121,7 @@ margin_bottom = 40.0
 [node name="UI" parent="UI" instance=ExtResource( 5 )]
 
 [node name="Box" parent="." instance=ExtResource( 10 )]
-position = Vector2( 908, 1036 )
+position = Vector2( 842, 641 )
 
 [node name="Robot" parent="." instance=ExtResource( 11 )]
 position = Vector2( 732, 443 )

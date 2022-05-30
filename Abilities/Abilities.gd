@@ -2,6 +2,7 @@ extends Node
 
 const LIGHT = "LIGHT"
 const GRAB = "GRAB"
+const PUSH = "PUSH"
 
 const abilities_gained_text_list = {
 	LIGHT : preload("res://Abilities/Torch/Got Torch.tres"),
@@ -10,7 +11,8 @@ const abilities_gained_text_list = {
 
 const abilities_pics ={
 	LIGHT: "placeholder",
-	GRAB: "placeholder"
+	GRAB: "placeholder",
+	PUSH: "placeholder",
 }
 
 
